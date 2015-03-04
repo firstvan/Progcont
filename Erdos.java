@@ -47,11 +47,15 @@ class Erdos {
                 }
 
                 if (volt == true) {
+                    boolean v = false;
                     for (int i = 0; i < asd.length; i++) {
                         if (!a1.containsKey(asd[i])) {
                             a1.put(asd[i], szama + 1);
-                            doit(a1, a);
+                            v = true;
                         }
+                    }
+                    if(v) {
+                        doit(a1, a);
                     }
                 }
             }
@@ -70,35 +74,14 @@ class Erdos {
             }
         }
 
-        for (Integer[] asd : a) {
-            if (!java.util.Arrays.asList(asd).contains(1)) {
-                boolean volt = false;
-                int szama = 0;
-                for (int i = 0; i < asd.length; i++) {
-                    if (erdosszamok.containsKey(asd[i])) {
-                        volt = true;
-                        if (szama < asd[i]) {
-                            szama = erdosszamok.get(asd[i]);
-                        }
-                    }
-                }
-
-                if (volt == true) {
-                    for (int i = 0; i < asd.length; i++) {
-                        if (!erdosszamok.containsKey(asd[i])) {
-                            erdosszamok.put(asd[i], szama+1);
-                            doit(erdosszamok, a);
-                        }
-                    }
-                }
-            }
-        }
+        doit(erdosszamok, a);
 
         int legnagyobb = 0;
 
         for (int szam : erdosszamok.values()) {
             if(legnagyobb < szam) {
                 legnagyobb = szam;
+
             }
         }
 
